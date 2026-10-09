@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bloom Tab by Ibrahim V5.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button id="grid" class="grid-btn" aria-label="Google apps"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></button>
+<div id="apps" class="panel apps hidden">
+  <div class="ahead">Google apps</div>
+  <input id="appQ" type="text" placeholder="Search apps" autocomplete="off">
+  <div id="appGrid" class="agrid"></div>
+</div>
+
+<main>
+  <section class="clock pop" id="clock" title="Click to switch analog / digital">
+    <svg class="cookie" viewBox="-100 -100 200 200"><path id="cookiePath"/></svg>
+    <svg class="analog" viewBox="-100 -100 200 200">
+      <line id="hHand" x1="0" y1="6" x2="0" y2="-38"/>
+      <line id="mHand" x1="0" y1="6" x2="0" y2="-58"/>
+      <circle id="sDot" r="6" cy="-70"/>
+      <circle r="5" class="hub"/>
+    </svg>
+    <div class="digital"><div id="date" class="small"></div><div class="time"><span id="hh"></span><span class="colon">:</span><span id="mm"></span></div><div id="ampm" class="small"></div></div>
+  </section>
+
+  <section class="greet pop">
+    <p id="nameLine"></p>
+    <p id="dateLine" class="muted"></p>
+  </section>
+
+  <section class="weather-card card pop">
+    <div class="condrow"><div id="cond">Loading…</div><span id="aqi" class="aqi hidden"></span></div>
+    <div class="row"><div class="pill bar"><span id="hum">Humidity –</span></div><div class="drop"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="#fff" d="M12 2C12 2 5 10 5 15a7 7 0 0014 0C19 10 12 2 12 2z"/></svg></div></div>
+    <div class="row"><div class="pill" id="feels">Feels –</div><button type="button" class="pill solid" id="city">📍 …</button></div>
+    <div id="locPanel" class="panel loc hidden">
+      <div id="savedLocs" class="saved"></div>
+      <input id="locInput" type="text" placeholder="Search city, e.g. Dibrugarh" autocomplete="off">
+      <button type="button" id="locGps">📍 Use my current location</button>
+      <div id="locResults"></div>
+    </div>
+  </section>
+
+  <section class="blob temp pop">
+    <div class="deg"><span id="temp">--</span><sup id="unit">°C</sup></div>
+    <div id="wicon" class="wicon">☁</div>
+  </section>
+
+  <form id="search" class="searchbar card pop">
+    <svg class="mag" viewBox="0 0 24 24" width="22" height="22"><circle cx="11" cy="11" r="6" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M16 16l4 4" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <input id="q" type="text" placeholder="Type here..." autocomplete="off" autofocus>
+    <button type="button" id="mic" class="mic" aria-label="Voice search"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 15a3 3 0 003-3V6a3 3 0 00-6 0v6a3 3 0 003 3zm5-3a5 5 0 01-10 0H5a7 7 0 006 6.9V22h2v-3.1A7 7 0 0019 12z"/></svg></button>
+    <button type="submit">Search</button>
+    <div id="sugg" class="sugg hidden"></div>
+  </form>
+
+  <section class="engines pop">
+    <div class="card label">Search With</div>
+    <div class="divider"></div>
+    <div id="engineList" class="engine-list"></div>
+  </section>
+</main>
+
+<div id="fc" class="panel fc hidden"></div>
+<div class="tools pop"><button id="tTasks" class="card tbtn" type="button">✓ Tasks</button><button id="tFocus" class="card tbtn" type="button">⏱ Focus</button></div>
+<div id="toolPanel" class="panel tool hidden">
+  <div id="tasksV"><input id="taskIn" placeholder="Add a task, press Enter" autocomplete="off"><div id="taskList"></div></div>
+  <div id="focusV" class="hidden"><div class="ftime" id="ftime">25:00</div>
+    <div class="frow"><button id="fStart" type="button">Start</button><button id="fReset" type="button">Reset</button></div>
+    <div class="frow"><button class="fm" data-m="25" type="button">25 min</button><button class="fm" data-m="15" type="button">15 min</button><button class="fm" data-m="5" type="button">5 min</button></div></div>
+</div>
+<div id="aiWrap" class="ai-wrap pop">
+  <button id="aiBtn" class="ai-btn card"><span class="aiicon"></span>AI Tools</button>
+  <div id="aiRow" class="ai-row"></div>
+</div>
+
+<nav id="dock" class="dock"></nav>
+<button id="setBtn" class="theme-btn" aria-label="Settings" title="Settings"><span></span></button>
+
+<div id="scrim" class="scrim hidden"></div>
+<aside id="drawer" class="drawer">
+  <h2>Bloom Tab by Ibrahim V5.1</h2>
+  <div class="dbody" id="dmain">
+    <div class="trow"><div>Shortcuts<small>Show saved shortcuts</small></div><label class="sw"><input type="checkbox" data-k="shortcuts"><i></i></label></div>
+    <div class="trow link" id="editSc"><div>Edit shortcuts<small>Add or remove dock icons</small></div><span>✎</span></div>
+    <div class="trow"><div>AI Tools<small>Show AI tools shortcut</small></div><label class="sw"><input type="checkbox" data-k="ai"><i></i></label></div>
+    <div class="trow"><div>Google Apps<small>Show the apps grid</small></div><label class="sw"><input type="checkbox" data-k="gapps"><i></i></label></div>
+    <div class="trow"><div>Analog clock<small>Off shows digital time</small></div><label class="sw"><input type="checkbox" data-k="analog"><i></i></label></div>
+    <div class="trow"><div>Fahrenheit<small>Show temperature in °F</small></div><label class="sw"><input type="checkbox" data-k="fahr"><i></i></label></div>
+    <div class="trow"><div>Hide microphone<small>Remove voice search icon</small></div><label class="sw"><input type="checkbox" data-k="nomic"><i></i></label></div>
+    <div class="trow"><div>Animations<small>Floating shapes and entrances</small></div><label class="sw"><input type="checkbox" data-k="anim"><i></i></label></div>
+    <div class="trow"><div>Search suggestions<small>Show ideas while you type</small></div><label class="sw"><input type="checkbox" data-k="suggest"><i></i></label></div>
+    <div class="trow"><div>Search history<small>Show recent searches when you click the box</small></div><label class="sw"><input type="checkbox" data-k="hist"><i></i></label></div>
+    <div class="trow"><div>Engine shortcuts<small>Type "yt lofi", "gh react", "g", "d", "b", "br" first</small></div><label class="sw"><input type="checkbox" data-k="bang"><i></i></label></div>
+    <div class="trow"><div>Smart answers<small>Calculator and unit convert, e.g. 5 km to mile</small></div><label class="sw"><input type="checkbox" data-k="calc"><i></i></label></div>
+    <div class="trow"><div>Air quality<small>Show AQI beside the weather</small></div><label class="sw"><input type="checkbox" data-k="aqi"><i></i></label></div>
+    <div class="trow"><div>24-hour clock<small>Off shows AM / PM</small></div><label class="sw"><input type="checkbox" data-k="h24"><i></i></label></div>
+    <div class="trow"><div>Gradient background<small>Blend the theme colours</small></div><label class="sw"><input type="checkbox" data-k="grad"><i></i></label></div>
+    <div class="trow"><button class="reset" id="exp" type="button">Export backup</button><label class="reset imp">Import backup<input id="imp" type="file" accept=".json" hidden></label></div>
+    <div class="trow"><div>Weather side panel<small>Keep the forecast open on wide screens</small></div><label class="sw"><input type="checkbox" data-k="fc"><i></i></label></div>
+    <div class="trow"><div>Design style<small>Solid, glass or dark glass</small></div></div>
+    <div class="trow styles"><button class="sty" data-s="solid" type="button">Solid</button><button class="sty" data-s="glass" type="button">Glass</button><button class="sty" data-s="glass-dark" type="button">Dark glass</button></div>
+    <div class="trow"><div>Glass strength</div><input id="glStr" type="range" min="15" max="70" value="40"></div>
+    <div class="trow"><div>Auto night theme<small>Midnight theme, 7 pm to 6 am</small></div><label class="sw"><input type="checkbox" data-k="auto"><i></i></label></div>
+    <div class="trow"><div>Wallpaper<small>Use your own image</small></div></div>
+    <div class="trow"><label class="reset imp">Choose image<input id="wallIn" type="file" accept="image/*" hidden></label><button class="reset" id="wallDel" type="button">Remove</button></div>
+    <div class="trow"><div>Blur</div><input id="wallBlur" type="range" min="0" max="20" value="0"></div>
+    <div class="trow link" id="openContact"><div>Contact developer<small>Links to Ibrahim's pages</small></div><span>✉</span></div>
+    <div class="swatches" id="swatches"></div>
+    <button class="reset" id="reset">Reset settings</button>
+  </div>
+  <div class="dbody hidden" id="dcontact">
+    <div class="trow"><button class="icon" id="backContact">←</button></div>
+    <div class="dev"><div class="avatar" id="avatar"></div><div><small>Developed By</small><b>Engr Ibrahim Khalil</b><small>Think Beyond Limits</small></div></div>
+    <div class="clinks" id="clinks"></div>
+  </div>
+  <div class="dbody hidden" id="dedit">
+    <div class="trow"><button class="icon" id="backEdit">←</button><button class="icon" id="addSc">＋ Add</button></div>
+    <div id="scList"></div>
+  </div>
+</aside>
+<button class="credit" id="credit" type="button" title="Contact the developer">Developed by Ibrahim Khalil</button>
+<script src="script.js"></script>
+</body>
+</html>

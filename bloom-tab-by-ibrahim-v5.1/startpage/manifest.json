@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "Bloom Tab by Ibrahim V5.1",
+  "version": "5.1",
+  "description": "A multi-theme new tab page with clock, weather, search and quick links.",
+  "chrome_url_overrides": { "newtab": "newtab.html" },
+  "host_permissions": ["https://api.open-meteo.com/*", "https://ipapi.co/*", "https://ipwho.is/*", "https://geocoding-api.open-meteo.com/*", "https://api.bigdatacloud.net/*", "https://suggestqueries.google.com/*", "https://air-quality-api.open-meteo.com/*"],
+  "permissions": ["geolocation"]
+}
